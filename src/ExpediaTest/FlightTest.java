@@ -2,7 +2,6 @@ package ExpediaTest;
 
 import static org.junit.Assert.*;
 
-import java.time.Instant;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +12,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import org.easymock.EasyMock;
+
 public class FlightTest {
 	private Flight targetFlight;
 	private final Date StartDate = new Date(2009, 11, 1);

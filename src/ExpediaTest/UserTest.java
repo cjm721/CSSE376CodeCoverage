@@ -13,6 +13,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+
 public class UserTest {
 	private User target;
 	private final Date StartDate = new Date(2009, 11, 1);
@@ -101,6 +102,20 @@ public class UserTest {
 		this.target.book(new Booking[] { new Flight(StartDate, EndDate, 100),
 				new Hotel(5), new Car(3) });
 		assertEquals(1024.65, this.target.Price(), 0.01);
+		
+		target = new Discount(0.1, 50000000);
+		ServiceLocator.Instance().AddDiscount(target);
+		this.target.book(new Booking[] { new Flight(StartDate, EndDate, 100),
+				new Hotel(5), new Car(3) });
+		assertEquals(2049.3, this.target.Price(), 0.01);
+		
+		target = new Discount(-1, 1);
+		ServiceLocator.Instance().AddDiscount(target);
+		this.target.book(new Booking[] { new Flight(StartDate, EndDate, 100),
+				new Hotel(5), new Car(3) });
+		assertEquals(3073.95, this.target.Price(), 0.01);
+		
+		
 	}
 
 	@After
@@ -108,4 +123,6 @@ public class UserTest {
 		target = null; // this is entirely unnecessary.. but I'm just showing a
 						// usage of the TearDown method here
 	}
+	
+	
 }
